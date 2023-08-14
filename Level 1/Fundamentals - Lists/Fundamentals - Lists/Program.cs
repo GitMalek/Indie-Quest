@@ -56,9 +56,7 @@
             {
                 for (int i = 0; i < partyNames.Count; i++)
                 {
-                    int firstRoll = random.Next(1, 7);
-                    int secondRoll = random.Next(1, 7);
-                    int damage = firstRoll + secondRoll;
+                    int damage = random.Next(1, 5);
 
                     basiliskHp -= damage;
 
@@ -70,9 +68,38 @@
                     }
                     Console.WriteLine($"{partyNames[i]} hits the basilisk for {damage} damage. Basilisk has {basiliskHp} HP left.");
                 }
+
+                int target = random.Next(partyNames.Count);
+
+                Console.WriteLine($"The basilisk uses its petrifying gaze on {partyNames[target]}!");
+
+                int constitutionSave = random.Next(1, 21) + 3;
+
+                if (constitutionSave < 12)
+                {
+                    Console.WriteLine($"{partyNames[target]} rolls a {constitutionSave} and fails to be saved. {partyNames[target]} is turned into stone.");
+                    partyNames.RemoveAt(target);
+                }
+                else
+                {
+                    Console.WriteLine($"{partyNames[target]} rolls a {constitutionSave} and is saved from the attack.");
+                }
+
+                if (partyNames.Count == 0)
+                {
+                    break;
+                }
+
             }
 
-            Console.WriteLine("The basilisk collapses and the heroes celebrate their victory!");
+            if (partyNames.Count == 0)
+            {
+                Console.WriteLine("The party has failed and the basilisk continues to turn unsuspecting adventurers to stone.");
+            }
+            else if (basiliskHp == 0)
+            {
+                Console.WriteLine("The basilisk collapses and the heroes celebrate their victory!");
+            }
         }
     }
 }
