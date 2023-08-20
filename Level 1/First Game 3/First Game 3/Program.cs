@@ -109,7 +109,7 @@ namespace First_Game_3
             var random = new Random();
             int cubeHealth = 0;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 cubeHealth += random.Next(1, 11);
             }

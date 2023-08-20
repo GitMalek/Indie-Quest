@@ -52,10 +52,15 @@
 
         static void ParsecConversion()
         {
-            double lightyears = 4.365;
-            double parsecs = lightyears / 3.26;
+            double parsecsInMeters = 3.2407792896664;
+            double lightyearsInMeters = 9.46073047258;
 
-            Console.WriteLine($"Alpha Centauri is {lightyears} lightyears away, or {parsecs} parsecs.");
+            double lightyearsToAlphaCentauri = 4.344;
+            double lightyearsInAParsec = parsecsInMeters / lightyearsInMeters;
+
+            double parsecsToAlphaCentauri = lightyearsInAParsec * lightyearsToAlphaCentauri;
+
+            Console.WriteLine($"Alpha Centauri is {parsecsToAlphaCentauri} parsecs away");
         }
     }
 }
