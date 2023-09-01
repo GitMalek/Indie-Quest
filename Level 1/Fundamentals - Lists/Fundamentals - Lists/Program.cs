@@ -60,7 +60,7 @@
 
                     basiliskHp -= damage;
 
-                    if (basiliskHp < 0)
+                    if (basiliskHp <= 0)
                     {
                         basiliskHp = 0;
                         Console.WriteLine($"{partyNames[i]} hits the basilisk for {damage} damage. Basilisk has {basiliskHp} HP left.");

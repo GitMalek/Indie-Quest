@@ -1,4 +1,6 @@
-﻿namespace Fundamentals___Loops_Practice
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace Fundamentals___Loops_Practice
 {
     internal class Program
     {
@@ -435,6 +437,7 @@
 
             Console.WriteLine();
 
+            // Swedish Flag
 
             Console.Write("()");
             for (int x = 0; x < (3 * n) + 3; x++)
@@ -447,34 +450,205 @@
             for (int y = 0; y < (2 * n) + 1; y++)
             {
                 Console.Write("||");
-                for (int x = 0; x < (3 + n) + 3; x++)
+                for (int x = 0; x < (3 * n) + 3; x++)
                 {
-                    if ((y !< n - 1 && x != n) || (y > n && y != (2 * n) && x != n))
+                    if (x == n && y != n && y != 2 * n)
+                    {
+                        Console.Write("| |");
+                        x += 2;
+                    }
+                    // Horizontal Flag Strip
+                    else if ((y == n - 1 || y == n) && x != n)
+                    {
+                        Console.Write("_");
+                    }
+                    else if (y == n && x == n)
+                    {
+                        Console.Write("   ");
+                        x += 2;
+                    }
+                    // Bottom Flag Border
+                    else if (y == 2 * n && x != n)
+                    {
+                        Console.Write("_");
+                    }
+                    else if (y == 2 * n && x == n)
+                    {
+                        Console.Write("|_|");
+                        x += 2;
+                    }
+                    else
                     {
                         Console.Write(" ");
                     }
-                    if ((y == n - 1 && x != n) || (y == (2 * n) && x != n))
+                }
+                Console.WriteLine("|");
+            }
+            Console.WriteLine("||");
+            Console.WriteLine();
+
+            // UK Flag
+            index = 0;
+            reverseIndex = n - 1;
+
+            Console.Write("()");
+            for (int x = 0; x < ((2 * n) - 2) + 9; x++)
+            {
+                Console.Write("_");
+            }
+
+            Console.WriteLine();
+
+            for (int y = 0; y < (2 * n) + 1; y++)
+            {
+                Console.Write("||");
+                if (y < (((2 * n) + 1) / 2) - 1)
+                {
+                    for (int spaces = 0; spaces < index; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write("\\ \\");
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write("| |");
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write("/ /");
+                    for (int spaces = 0; spaces < index; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                else if (y == (((2 * n) + 1) / 2) - 1)
+                {
+                    for (int spaces = 0; spaces < index; spaces++)
                     {
                         Console.Write("_");
                     }
-                    if (y == n && x != n)
+                    Console.Write("\\_\\");
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
                     {
                         Console.Write("_");
                     }
-                    if (y == n && x == n)
+                    Console.Write("| |");
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
                     {
-                        Console.Write("   ");
-                        x++;
+                        Console.Write("_");
                     }
-                    if (y != (2 * n) && x == n)
+                    Console.Write("/_/");
+                    for (int spaces = 0; spaces < index; spaces++)
                     {
-                        Console.Write("| |");
-                        x++;
+                        Console.Write("_");
                     }
-                    if (y == (2 * n) && x == n)
+                }
+                else if (y == ((2 * n) + 1) / 2)
+                {
+                    for (int spaces = 0; spaces < (((2 * n) - 2) + 7) / 2; spaces++)
                     {
-                        Console.Write("|_|");
-                        x++;
+                        Console.Write("_");
+                    }
+                    Console.Write("   ");
+                    for (int spaces = 0; spaces < (((2 * n) - 2) + 7) / 2; spaces++)
+                    {
+                        Console.Write("_");
+                    }
+                    index = -1;
+                    reverseIndex = n;
+                }
+                else if (y > ((2 * n + 1) / 2) && y != 2 * n)
+                {
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write("/ /");
+                    for (int spaces = 0; spaces < index; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write("| |");
+                    for (int spaces = 0; spaces < index; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.Write("\\ \\");
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
+                    {
+                        Console.Write(" ");
+                    }
+                }
+                else
+                {
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
+                    {
+                        Console.Write("_");
+                    }
+                    Console.Write("/_/");
+                    for (int spaces = 0; spaces < index; spaces++)
+                    {
+                        Console.Write("_");
+                    }
+                    Console.Write("|_|");
+                    for (int spaces = 0; spaces < index; spaces++)
+                    {
+                        Console.Write("_");
+                    }
+                    Console.Write("\\_\\");
+                    for (int spaces = 0; spaces < reverseIndex; spaces++)
+                    {
+                        Console.Write("_");
+                    }
+                }
+                index++;
+                reverseIndex--;
+                Console.WriteLine("|");
+            }
+            Console.Write("||");
+            Console.WriteLine();
+
+            // American Flag
+
+            Console.Write("()");
+            for (int x = 0; x < (2 * (n + (n - 1))); x++)
+            {
+                Console.Write("_");
+            }
+
+            Console.WriteLine();
+
+            for (int y = 0; y < 2 * n; y++)
+            {
+                Console.Write("||");
+                for (int x = 0; x < (2 * (n + (n - 1))); x++)
+                {
+                    if (y < n  && x < n + (n - 1) && x % 2 == 0 && y % 2 == 0)
+                    {
+                        Console.Write("*");
+                    }
+                    else if (y < n && x < n + (n - 1) && x % 2 != 0 && y % 2 == 0)
+                    {
+                        Console.Write(" ");
+                    }
+                    else if (y < n && x < n + (n - 1) && x % 2 != 0 && y % 2 != 0)
+                    {
+                        Console.Write("*");
+                    }
+                    else if (y < n && x < n + (n - 1) && x % 2 == 0 && y % 2 != 0)
+                    {
+                        Console.Write(" ");
+                    }
+                    else if (y % 2 != 0)
+                    {
+                        Console.Write("#");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
                     }
                 }
                 Console.WriteLine("|");
