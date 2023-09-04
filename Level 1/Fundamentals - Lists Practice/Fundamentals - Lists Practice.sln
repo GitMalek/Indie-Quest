@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundamentals - Lists Practice", "Fundamentals - Lists Practice\Fundamentals - Lists Practice.csproj", "{9C9B7107-6854-4F16-A6A0-354B9D763731}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C9B7107-6854-4F16-A6A0-354B9D763731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C9B7107-6854-4F16-A6A0-354B9D763731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C9B7107-6854-4F16-A6A0-354B9D763731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C9B7107-6854-4F16-A6A0-354B9D763731}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4F83E9E-E061-4D68-9AA6-344C9D7FF754}
+	EndGlobalSection
+EndGlobal
