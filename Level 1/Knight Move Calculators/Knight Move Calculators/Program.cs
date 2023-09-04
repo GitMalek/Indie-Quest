@@ -187,6 +187,9 @@ namespace Knight_Move_Calculators
 
         /* Nevermind. I got up at 2 AM because I realized that I can just check for zeroes and make sure to exclude the origin point since that's the only one I don't want overwritten anyways.
            New maximum board size before heavy slow-downs: 10,000x10,000. The .Any() REALLY slowed it down. */
+
+        /* Tested performance for including an exception for the starting position in the if condition VS. just changing the start position back to 0 when the method is done. Reverting the position took 22 seconds
+           while keeping it in the if condition took 21 seconds. It's more likely that I just did a bad job using the diagnostic tools though. */
         public class Coordinates
         {
             public int x;
