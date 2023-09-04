@@ -7,8 +7,8 @@ namespace Knight_Move_Calculators
         static void Main(string[] args)
         {
             // Change dimensions of the board as needed.
-            int width = 2000;
-            int height = 2000;
+            int width = 10000;
+            int height = 10000;
 
             var random = new Random();
             int[,] chessBoard = new int[width, height];
@@ -35,7 +35,7 @@ namespace Knight_Move_Calculators
 
             Console.WriteLine();
 
-            // Breadth-First, scanning the chessboard each time.
+            /* Breadth-First, scanning the chessboard each time.
             Console.WriteLine("Breadth-First, chessboard scan:");
             chessBoard = new int[width, height];
 
@@ -49,10 +49,11 @@ namespace Knight_Move_Calculators
                 }
                 Console.WriteLine();
             }
+            */
 
             Console.WriteLine();
 
-            /* Breadth-First, creating a list to order the squares to fill.
+            // Breadth-First, creating a list to order the squares to fill.
             Console.WriteLine("Breadth-First, To-Do List:");
             chessBoard = new int[width, height];
 
@@ -66,7 +67,6 @@ namespace Knight_Move_Calculators
                 }
                 Console.WriteLine();
             }
-            */
         }
 
         // Mixed breadth-first, then depth-first search. Rough maximum board size before heavy slow-downs: 100x100.
@@ -182,8 +182,11 @@ namespace Knight_Move_Calculators
             }
         }
 
-        // Breadth-first search by creating a list of spaces in the order they should be filled out in. Rough maximum board size before heavy slow-downs: 200x200. Using .Any() to verify if a coordinate class
-        // has already been inputted probably causes a lot of slow down, and there's probably a better way to make that check OR a better condition to make sure no space is overwritten that I don't know yet.
+        /* Breadth-first search by creating a list of spaces in the order they should be filled out in. Rough maximum board size before heavy slow-downs: 200x200. Using .Any() to verify if a coordinate class
+           has already been inputted probably causes a lot of slow down, and there's probably a better way to make that check OR a better condition to make sure no space is overwritten that I don't know yet. */
+
+        /* Nevermind. I got up at 2 AM because I realized that I can just check for zeroes and make sure to exclude the origin point since that's the only one I don't want overwritten anyways.
+           New maximum board size before heavy slow-downs: 10,000x10,000. The .Any() REALLY slowed it down. */
         public class Coordinates
         {
             public int x;
@@ -222,12 +225,12 @@ namespace Knight_Move_Calculators
                 }
             }
 
-            void UpdateMoves(int i, int startingX, int startingY, int x, int y, int moves)
+            void UpdateMoves(int i, int beginningX, int beginningY, int x, int y, int moves)
             {
-                if (startingX + x >= 0 && startingX + x < width && startingY + y >= 0 && startingY + y < height && !orderOfPlacement.Any(p => p.x == startingX + x && p.y == startingY + y))
+                if (beginningX + x >= 0 && beginningX + x < width && beginningY + y >= 0 && beginningY + y < height && chessBoard[beginningX + x, beginningY + y] == 0 && (beginningX + x != startingX || beginningY + y != startingY))
                 {
-                    orderOfPlacement.Add(new Coordinates { x = startingX + x, y = startingY + y });
-                    chessBoard[startingX + x, startingY + y] = chessBoard[orderOfPlacement[i].x, orderOfPlacement[i].y] + 1;
+                    orderOfPlacement.Add(new Coordinates { x = beginningX + x, y = beginningY + y });
+                    chessBoard[beginningX + x, beginningY + y] = chessBoard[orderOfPlacement[i].x, orderOfPlacement[i].y] + 1;
                 }
             }
         }
