@@ -27,7 +27,8 @@
                 Console.WriteLine($"{factorial}! = " + Factorial(factorial));
             } */
 
-            List<string> participants = new List<string>() { "Allie", "Ben", "Claire" };
+            
+            List<string> participants = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"};
 
             Console.WriteLine("Signed-up participants: " + string.Join(", ", participants));
 
@@ -35,20 +36,18 @@
 
             Console.WriteLine("Starting orders:");
 
-            List<string> permuations = WriteAllPermutations(participants);
+            List<string> permutations = new List<string>();
+                
+            WriteHeapsPermutations(participants.Count, participants, permutations);
 
-            for (int i = 0; i < permuations.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {permuations[i]}");
-            }
-
+            Console.WriteLine("Done");
         }
 
         static void ShuffleList(List<string> items)
         {
             var random = new Random();
 
-            for (int i = 0; i < items.Count - 2; i++)
+            for (int i = 0; i < items.Count - 1; i++)
             {
                 int j = random.Next(i, items.Count);
 
@@ -74,13 +73,6 @@
         {
             List<string> permutations = new List<string>();
 
-            if (items.Count == 2)
-            {
-                permutations.Add($"{items[0]}, {items[1]}");
-                permutations.Add($"{items[1]}, {items[0]}");
-                return permutations;
-            }
-
             for (int i = 0; i < Factorial(items.Count); i++)
             {
                 bool match = false;
@@ -102,5 +94,52 @@
             }
             return permutations;
         }
+
+        static void WriteHeapsPermutations(int k,  List<string> items, List<string> results)
+        {
+            if (k == 1)
+            {
+                results.Add(string.Join(", ", items));
+                return;
+            }
+
+            WriteHeapsPermutations(k - 1, items, results);
+
+            for (int i = 0; i < k - 1; i++)
+            {
+                if (k % 2 == 0)
+                {
+                    (items[i], items[k - 1]) = (items[k - 1], items[i]);
+                }
+                else
+                {
+                    (items[0], items[k - 1]) = (items[k - 1], items[0]);
+                }
+                WriteHeapsPermutations(k - 1, items, results);
+            }
+        }
+
+        /*
+        static List<string> WriteRecursionPermutations(List<string> items)
+        {
+            for (int i = 0; i < Factorial(items.Count); i++)
+            {
+                if (i == 0)
+                {
+                    Console.WriteLine($"{i + 1}. " + string.Join(", ", items));
+                }
+                else
+                {
+                    List<string> permutation = new List<string>();
+                }
+            }
+        }
+
+        static List<string> SwapTwo(List<string> items)
+        {
+            string temp = items[0];
+            items[0] = items[1];
+            items[1] = temp;
+        } */
     }
 }
