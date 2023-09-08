@@ -1,4 +1,7 @@
-﻿namespace Fundamentals___Algorithm_Design_2
+﻿using System.ComponentModel.Design;
+using System.Text.Json.Serialization;
+
+namespace Fundamentals___Algorithm_Design_2
 {
     internal class Program
     {
@@ -28,7 +31,7 @@
             } */
 
             
-            List<string> participants = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"};
+            List<string> participants = new List<string>() { "A", "B", "C", "D", "E"};
 
             Console.WriteLine("Signed-up participants: " + string.Join(", ", participants));
 
@@ -36,17 +39,19 @@
 
             Console.WriteLine("Starting orders:");
 
-            List<string> permutations = new List<string>();
-                
-            WriteHeapsPermutations(participants.Count, participants, permutations);
+            List<string> permutations = WriteRecursionPermutations(participants);
+            /*    
+            WriteHeapsPermutations(participants.Count, participants, permutations); */
 
-            Console.WriteLine("Done");
+            for (int i = 0; i < permutations.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {permutations[i]}");
+            }
         }
 
         static void ShuffleList(List<string> items)
         {
             var random = new Random();
-
             for (int i = 0; i < items.Count - 1; i++)
             {
                 int j = random.Next(i, items.Count);
@@ -119,27 +124,36 @@
             }
         }
 
-        /*
         static List<string> WriteRecursionPermutations(List<string> items)
         {
-            for (int i = 0; i < Factorial(items.Count); i++)
+            List<string> results = new();
+            List<string> pickedItems = new();
+
+            void WriteRecursionPermutations()
             {
-                if (i == 0)
+                if (items.Count == 0)
                 {
-                    Console.WriteLine($"{i + 1}. " + string.Join(", ", items));
+                    results.Add(string.Join(", ", pickedItems));
+                    return;
                 }
-                else
+
+                for (int remainingItemIndex = 0; remainingItemIndex < items.Count; remainingItemIndex++)
                 {
-                    List<string> permutation = new List<string>();
+                    string pickedItem = items[remainingItemIndex];
+                    items.RemoveAt(remainingItemIndex);
+                    pickedItems.Add(pickedItem);
+
+                    WriteRecursionPermutations();
+
+                    items.Insert(remainingItemIndex, pickedItem);
+                    pickedItems.RemoveAt(pickedItems.Count - 1);
                 }
             }
-        }
 
-        static List<string> SwapTwo(List<string> items)
-        {
-            string temp = items[0];
-            items[0] = items[1];
-            items[1] = temp;
-        } */
+            WriteRecursionPermutations();
+
+            return results;
+        }
+        
     }
 }
